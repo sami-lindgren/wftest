@@ -37,5 +37,5 @@ jobs:
           if [ ${{inputs.overwrite}} ]; then
             npx lerna version ${{inputs.overwrite}} --yes
           else
-            npx lerna version ${{inputs.version} --yes
+            npx lerna version ${{inputs.version}} --yes
           fi

@@ -1,22 +1,16 @@
 name: WFTEST
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version'
-        type: choice
-        options:
-        - major
-        - minor
-        - patch
-      overwrite:
-        description: 'Version overwrite'
-        type: string
+  pull_request:
+    types: [closed]
+    branches:
+      - development
+      - main
 
 jobs:
   publish:
     name: Build and push docker images
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"

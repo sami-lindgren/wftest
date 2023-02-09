@@ -1,0 +1,23 @@
+name: WFTEST
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        type: choice
+        options:
+        - major
+        - minor
+        - patch
+      overwrite:
+        description: 'Version overwrite'
+        type: string
+
+jobs:
+  publish:
+    name: Build and push docker images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set version
+        run: if [ ${{inputs.overwrite}} ];then echo ${{inputs.overwrite}};else echo ${{inputs.version}};fi

@@ -28,8 +28,4 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor}}@users.noreply.github.com"
 
-          if [ ${{inputs.overwrite}} ]; then
-            npx lerna version ${{inputs.overwrite}} --yes
-          else
-            npx lerna version ${{inputs.version}} --yes
-          fi
+          npx lerna version patch --yes
